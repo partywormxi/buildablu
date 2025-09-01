@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build a Blu - XML Set Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Build a Blu</h1>
+        <p>Select options from the dropdowns to create your XML sets.</p>
+        
+        <div class="dropdowns">
+            <label for="option1">Option 1:</label>
+            <select id="option1">
+                <option value="value1">Value 1</option>
+                <option value="value2">Value 2</option>
+                <option value="value3">Value 3</option>
+            </select>
+
+            <label for="option2">Option 2:</label>
+            <select id="option2">
+                <option value="valueA">Value A</option>
+                <option value="valueB">Value B</option>
+                <option value="valueC">Value C</option>
+            </select>
+        </div>
+
+        <button id="generate">Generate XML</button>
+
+        <h2>Generated XML:</h2>
+        <pre id="xmlOutput"></pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
