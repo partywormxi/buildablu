@@ -85,6 +85,7 @@ function updateCheckboxStates(table, selectedSpells) {
             // Disable if 20 spells or would exceed BLU Points
             checkbox.disabled = limitReached || (currentSet + spellCost > blupoints);
         } else {
+            // Always enable checked boxes so they can be unchecked
             checkbox.disabled = false;
         }
     });
@@ -171,7 +172,20 @@ function updateCheckboxStates(table, selectedSpells) {
     const checkboxes = table.querySelectorAll('input[type="checkbox"]');
     const limitReached = selectedSpells.length >= 20;
     const blupoints = getBluPoints();
-    document.getElementById('blupoints-display').textContent = `Current BLU Points: ${blupoints}`;
+    const currentSet = getBluPointsSet(selectedSpells, window.allData || []);
+    checkboxes.forEach(checkbox => {
+        if (!checkbox.checked) {
+            // Find spell cost
+            const spellName = checkbox.value;
+            const spellObj = (window.allData || []).find(item => item.Spell === spellName);
+            const spellCost = spellObj ? (parseInt(spellObj["Point Cost"], 10) || 0) : 0;
+            // Disable if 20 spells or would exceed BLU Points
+            checkbox.disabled = limitReached || (currentSet + spellCost > blupoints);
+        } else {
+            // Always enable checked boxes so they can be unchecked
+            checkbox.disabled = false;
+        }
+    });
 }
 
 function getBluPointsSet(selectedSpells, allData) {
