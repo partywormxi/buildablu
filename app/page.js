@@ -31,7 +31,7 @@ export default function Page() {
   const [blulevel, setBluLevel] = useState(jobType === 'main' ? 99 : 49);
 
   useEffect(() => {
-    fetch('/data.json')
+    fetch('https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/data.json')
       .then(res => res.json())
       .then(setData);
   }, []);
