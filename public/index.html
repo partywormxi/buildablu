@@ -10,11 +10,11 @@
     <div class="container">
         <h1>Build a BLU</h1>
         <div class="jp-section">
-            <label for="jp-points">JP Blue Magic Points:</label>
-            <input type="number" id="jp-points" value="20" min="0">
+            <label for="jp-points">JP Blue Magic Points</label>
+            <input type="number" id="jp-points" value="20" min="0", max="20">
 
-            <label for="assimilation-points" style="margin-left: 20px;">Assimilation merit points:</label>
-            <input type="number" id="assimilation-points" value="5" min="0">
+            <label for="assimilation-points" style="margin-left: 20px;">Assimilation merit points</label>
+            <input type="number" id="assimilation-points" value="5" min="0", max="5">
 
           
             <label for="job-trait-bonus-1200" style="margin-left: 20px;">
@@ -27,21 +27,27 @@
             </label>
 
             <br><br>
-            <span id="blupoints-display" style="margin-left: 20px; font-weight: bold;"></span>
+            <span id="blupoints-display" style="font-weight: bold;"></span>
             <span id="blupoints-set-display" style="margin-left: 20px; font-weight: bold;"></span>
+            
 
         </div>
 
         <div class="output-section" style="display: flex; gap: 40px;">
             <div>
-                <h2>Generated XML:</h2>
+                <h2>Generated XML</h2>
                 <button id="copy-xml-btn" style="margin-bottom: 8px;">Copy XML</button>
                 <pre id="xml-output"></pre>
             </div>
             <div>
-                <h2>Job Trait Output:</h2>
+                <h2>Job Traits</h2>
                 <pre id="job-trait-output"></pre>
             </div>
+            <div>
+                <h2>Stat Bonuses</h2>
+                <pre id="stat-bonus-display"></pre>
+            </div>
+
         </div>
 
         <div class="search-section">

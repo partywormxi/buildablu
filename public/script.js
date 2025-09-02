@@ -15,6 +15,9 @@ function updateJobTraitOutput(selectedSpells, allData) {
     // Find selected spell objects
     const selectedSpellObjects = allData.filter(item => selectedSpells.includes(item.Spell));
 
+    const bonus100Checked = document.getElementById('job-trait-bonus-100')?.checked;
+    const bonus1200Checked = document.getElementById('job-trait-bonus-1200')?.checked;
+
     selectedSpellObjects.forEach(item => {
         const trait = item["Creates Job Trait"];
         const points = parseInt(item["Trait Points"], 10) || 0;
@@ -27,13 +30,15 @@ function updateJobTraitOutput(selectedSpells, allData) {
     const qualifyingTraits = Object.entries(traitTotals)
         .filter(([trait, total]) => total >= 8)
         .map(([trait, total]) => {
-            const tier = Math.floor(total / 8);
+            var tier = Math.floor(total / 8);
+            if (bonus100Checked) tier ++;
+            if (bonus1200Checked) tier ++;
             return `${trait} (Tier ${tier}, ${total} points)`;
         });
 
     const output = qualifyingTraits.length
         ? qualifyingTraits.join('\n')
-        : "No job traits reached 8 points.";
+        : "";
 
     document.getElementById('job-trait-output').textContent = output;
 }
@@ -43,12 +48,13 @@ function updateDisplayedXML(selectedSpells, allData) {
     const xmlOutput = createXMLSet(selectedSpells);
     document.getElementById('xml-output').textContent = xmlOutput;
     updateJobTraitOutput(selectedSpells, allData);
+    updateStatBonusDisplay(selectedSpells, allData); // <-- Add this line
 }
 
 function getBluPoints() {
     const jpPoints = parseInt(document.getElementById('jp-points').value, 10) || 0;
     const assimilationPoints = parseInt(document.getElementById('assimilation-points').value, 10) || 0;
-    return 60 + jpPoints + assimilationPoints;
+    return 55 + jpPoints + assimilationPoints;
 }
 
 function getBluPointsSet(selectedSpells, allData) {
@@ -175,6 +181,24 @@ function getBluPointsSet(selectedSpells, allData) {
     }, 0);
 }
 
+function updateStatBonusDisplay(selectedSpells, allData) {
+    // Collect all stat bonuses from selected spells
+    const statBonuses = selectedSpells
+        .map(spellName => {
+            const spellObj = allData.find(item => item.Spell === spellName);
+            return spellObj ? spellObj["Stat Bonus"] : null;
+        })
+        .filter(bonus => bonus && bonus.trim() !== "");
+
+    // Get unique bonuses
+    const uniqueBonuses = [...new Set(statBonuses)];
+
+    // Display
+    document.getElementById('stat-bonus-display').textContent =
+        uniqueBonuses.length
+            ? `${uniqueBonuses.join(', \n')}`
+            : "Stat Bonus: None";
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('data.json')
@@ -230,6 +254,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
+
+            document.getElementById('job-trait-bonus-1200').addEventListener('change', () => {
+                updateJobTraitOutput(selectedSpells, window.allData);
+            });
+            document.getElementById('job-trait-bonus-100').addEventListener('change', () => {
+                updateJobTraitOutput(selectedSpells, window.allData);
+            });
         });
 });
 
