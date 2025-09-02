@@ -1,10 +1,9 @@
 # buildablu
 
 ## Description
-buildablu is a simple web application that allows users to create copyable XML sets based on their selections from dropdown menus. The application is designed to be user-friendly and provides a straightforward interface for generating XML data.
+Build your BLU sets in browser and copy them to your AzureSets `data\settings.xml` file
 
 ## Features
-- Dropdown selections for user input
 - Dynamic generation of XML sets
 - Copyable XML output for easy use
 
@@ -15,6 +14,7 @@ buildablu
 │   ├── index.html        # Main HTML document
 │   ├── styles.css       # Styles for the application
 │   └── script.js        # JavaScript logic for generating XML
+│   └── data.json        # Data file of BLU spells
 ├── package.json         # npm configuration file
 └── README.md            # Project documentation
 ```
