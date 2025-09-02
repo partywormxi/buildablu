@@ -1,25 +1,31 @@
 {
-  "name": "buildablu",
-  "version": "1.0.0",
-  "description": "An application that creates copyable XML sets based on dropdown selections.",
-  "main": "public/script.js",
+  "name": "buildablu-next",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "live-server public",
-    "build": "echo 'Build step can be added here'",
-    "deploy": "gh-pages -d public"
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
+    "start": "next start",
+    "lint": "eslint"
   },
-  "keywords": [
-    "xml",
-    "dropdown",
-    "javascript",
-    "github-pages"
-  ],
-  "author": "Your Name",
-  "license": "MIT",
   "dependencies": {
-    "gh-pages": "^3.2.3",
-    "live-server": "^1.2.1"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.2",
+    "next": "15.5.2",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-window": "^2.0.2"
   },
-  "devDependencies": {},
-  "homepage": "https://yourusername.github.io/buildablu"
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
 }
