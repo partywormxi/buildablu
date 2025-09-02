@@ -8,29 +8,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Build a Blu</h1>
-        <p>Select options from the dropdowns to create your XML sets.</p>
-        
-        <div class="dropdowns">
-            <label for="option1">Option 1:</label>
-            <select id="option1">
-                <option value="value1">Value 1</option>
-                <option value="value2">Value 2</option>
-                <option value="value3">Value 3</option>
-            </select>
+        <h1>Build a BLU</h1>
+        <div class="jp-section">
+            <label for="jp-points">JP Blue Magic Points:</label>
+            <input type="number" id="jp-points" value="20" min="0">
 
-            <label for="option2">Option 2:</label>
-            <select id="option2">
-                <option value="valueA">Value A</option>
-                <option value="valueB">Value B</option>
-                <option value="valueC">Value C</option>
-            </select>
+            <label for="assimilation-points" style="margin-left: 20px;">Assimilation merit points:</label>
+            <input type="number" id="assimilation-points" value="5" min="0">
+
+          
+            <label for="job-trait-bonus-1200" style="margin-left: 20px;">
+                <input type="checkbox" id="job-trait-bonus-1200">
+                Job Trait Bonus 1200
+            </label>
+            <label for="job-trait-bonus-100" style="margin-left: 20px;">
+                <input type="checkbox" id="job-trait-bonus-100">
+                Job Trait Bonus 100
+            </label>
+
+            <br><br>
+            <span id="blupoints-display" style="margin-left: 20px; font-weight: bold;"></span>
+            <span id="blupoints-set-display" style="margin-left: 20px; font-weight: bold;"></span>
+
         </div>
 
-        <button id="generate">Generate XML</button>
+        <div class="output-section" style="display: flex; gap: 40px;">
+            <div>
+                <h2>Generated XML:</h2>
+                <button id="copy-xml-btn" style="margin-bottom: 8px;">Copy XML</button>
+                <pre id="xml-output"></pre>
+            </div>
+            <div>
+                <h2>Job Trait Output:</h2>
+                <pre id="job-trait-output"></pre>
+            </div>
+        </div>
 
-        <h2>Generated XML:</h2>
-        <pre id="xmlOutput"></pre>
+        <div class="search-section">
+            <input type="text" id="search-input" placeholder="Search spells...">
+        </div>
+        <div class="container">
+            <div id="table-container"></div>
+        </div>
     </div>
 
     <script src="script.js"></script>

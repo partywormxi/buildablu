@@ -1,40 +1,61 @@
+/* General page styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
+  font-family: 'Arial', sans-serif;
 }
-
+.container {
+  max-width: 80%;
+  padding: 20px;
+  background-color: #fff;
+}
 h1 {
-    color: #333;
+  text-align: center;
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
-
-.dropdown-container {
-    margin-bottom: 20px;
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  overflow: hidden;
 }
-
-.dropdown {
-    padding: 10px;
-    font-size: 16px;
+th, td {
+  padding: 8px;
+  text-align: left;
 }
-
-.button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
+th {
+  background-color: #5c6bc0;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
-
-.button:hover {
-    background-color: #0056b3;
+td {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
 }
-
-.xml-output {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    white-space: pre-wrap;
+tr:hover {
+  background-color: #f1f1f1;
+}
+tr:nth-child(even) td {
+  background-color: #f3f3f3;
+}
+.output-section {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+.output-section > div {
+    flex: 1;
+}
+#xml-output {
+    border: 2px solid #0078d4;
+    border-radius: 6px;
+    padding: 12px;
+    background: #f9f9f9;
     font-family: monospace;
+    user-select: all;
+    min-width: 300px;
+    min-height: 120px;
+    box-sizing: border-box;
 }
