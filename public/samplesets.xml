@@ -1,0 +1,36 @@
+<sample>
+    <slot01>sheep song</slot01>
+    <slot02>cocoon</slot02>
+    <slot03>spectral floe</slot03>
+    <slot04>delta thrust</slot04>
+    <slot05>blank gaze</slot05>
+    <slot06>glutinous dart</slot06>
+    <slot07>sweeping gouge</slot07>
+    <slot08>erratic flutter</slot08>
+    <slot09>sudden lunge</slot09>
+    <slot10>occultation</slot10>
+    <slot11>barbed crescent</slot11>
+    <slot12>nat. meditation</slot12>
+    <slot13>winds of promy.</slot13>
+    <slot14>magic fruit</slot14>
+    <slot15>fantod</slot15>
+    <slot16>white wind</slot16>
+    <slot17>entomb</slot17>
+    <slot18>magic hammer</slot18>
+    <slot19>subduction</slot19>
+    <slot20>barrier tusk</slot20>
+</sample>
+<sample-bumba>
+    <slot01>sheep song</slot01>
+    <slot02>cocoon</slot02>
+    <slot03>spectral floe</slot03>
+    <slot04>delta thrust</slot04>
+    <slot05>blank gaze</slot05>
+    <slot06>glutinous dart</slot06>
+    <slot07>sweeping gouge</slot07>
+    <slot08>erratic flutter</slot08>
+    <slot09>sudden lunge</slot09>
+    <slot10>occultation</slot10>
+    <slot11>barbed crescent</slot11>
+    <slot12>nat. meditation</slot12>
+</sample-bumba>
