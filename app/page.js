@@ -116,7 +116,7 @@ export default function Page() {
         if (jobType === 'main' && bonus1200) tier++;
         return `${trait} (Tier ${tier}, ${total} points)`;
       }),
-    [traitTotals, bonus100, bonus1200]
+    [traitTotals, bonus100, bonus1200, jobType]
   );
 
   // Stat bonus output
@@ -231,7 +231,6 @@ export default function Page() {
       .then(xmlText => {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(xmlText, "application/xml");
-        //const sets = Array.from(xmlDoc.Descendants().Where(x => x.Name.LocalName.StartsWith("sample")));
         const sets = Array.from(xmlDoc.getElementsByTagName("sample"));
         const samples = sets.map(setEl => {
           const name = setEl.getAttribute("name") || "sample";
@@ -252,7 +251,7 @@ export default function Page() {
 
   return (
     <div className="container" style={{ maxWidth: "80%", padding: 20 }}>
-      <h1>Build a BLU</h1>
+      <h1>BUILD-A-BLU</h1>
       {/* BLUset Save/Recall/Clear/Import UI */}
       <BluSetControls
         blusetName={blusetName}

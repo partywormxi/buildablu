@@ -72,7 +72,7 @@ export default function JobTypeToggle({
             </div>
           </label>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: 16, width: "100%" }}>
-            <div className="checkbox-wrapper-3" style={{ fontWeight: "bold", marginRight: 24 }}>
+            <div className="checkbox-wrapper-3" style={{ fontWeight: "bold", marginRight: 24 }}>Job Trait Bonus 1200
               <label>
                 <input
                   type="checkbox"
@@ -80,10 +80,9 @@ export default function JobTypeToggle({
                   checked={bonus1200}
                   onChange={e => setBonus1200(e.target.checked)}
                 /><label htmlFor="cbx-3" className="toggle"><span></span></label>
-                Job Trait Bonus 1200
               </label>
             </div>
-            <div className="checkbox-wrapper-4" style={{ fontWeight: "bold" }}>
+            <div className="checkbox-wrapper-4" style={{ fontWeight: "bold" }}>Job Trait Bonus 100
               <label>
                 <input
                   type="checkbox"
@@ -91,7 +90,6 @@ export default function JobTypeToggle({
                   checked={bonus100}
                   onChange={e => setBonus100(e.target.checked)}
                 /><label htmlFor="cbx-4" className="toggle"><span></span></label>
-                Job Trait Bonus 100
               </label>
             </div>
           </div>
