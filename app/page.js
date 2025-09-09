@@ -1,19 +1,11 @@
 'use client';
 
 import React, { useEffect, useState, useMemo } from 'react';
-import ToggleButton from '@mui/material/ToggleButton';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { BLOCKED_PAGES } from 'next/dist/shared/lib/constants';
-
-function createXMLSet(selectedValues) {
-  let xmlString = '<sets>\n';
-  selectedValues.forEach((value, idx) => {
-    const slotNum = String(idx + 1).padStart(2, '0');
-    xmlString += `  <slot${slotNum}>${value}</slot${slotNum}>\n`;
-  });
-  xmlString += '</sets>';
-  return xmlString;
-}
+import BluSetControls from './components/BluSetControls';
+import JobStatsBox from './components/JobStatsBox';
+import JobTypeToggle from './components/JobTypeToggle';
+import OutputSection from './components/OutputSection';
+import SpellTable from './components/SpellTable';
 
 export default function Page() {
   const [data, setData] = useState([]);
@@ -262,250 +254,32 @@ export default function Page() {
     <div className="container" style={{ maxWidth: "80%", padding: 20 }}>
       <h1>Build a BLU</h1>
       {/* BLUset Save/Recall/Clear/Import UI */}
-      <div style={{ marginBottom: 20 }}>
-        <input
-          type="text"
-          placeholder="newsetname"
-          value={blusetName}
-          onChange={e => setBlusetName(e.target.value)}
-          style={{ marginRight: 8, padding: 4, borderRadius: 4, border: "1px solid #aaa" }}
-        />
-        <button
-          onClick={handleSaveBluset}
-          style={{ padding: "4px 12px", borderRadius: 4, background: "#0078d4", color: "#fff", border: "none", fontWeight: "bold", marginRight: 12 }}
-        >
-          Save BLUset
-        </button>
-        <select
-          value={selectedBluset || ""}
-          onChange={e => handleRecallBluset(e.target.value)}
-          style={{ padding: 4, borderRadius: 4, border: "1px solid #aaa", marginRight: 12 }}
-        >
-          <option value="">Recall BLUset...</option>
-          {blusets.map(bs => (
-            <option key={bs.name} value={bs.name}>{bs.name}</option>
-          ))}
-        </select>
-        <button
-          onClick={handleClearBlusets}
-          style={{ padding: "4px 12px", borderRadius: 4, background: "#d32f2f", color: "#fff", border: "none", fontWeight: "bold", marginRight: 12 }}
-        >
-          Clear All Saved BLUsets
-        </button>
-        <button
-          onClick={handleImportSampleBlusets}
-          style={{ padding: "4px 12px", borderRadius: 4, background: "#388e3c", color: "#fff", border: "none", fontWeight: "bold" }}
-        >
-          Import Sample BLUsets
-        </button>
-      </div>
-      <div className="jp-section" style={{ marginBottom: 20 }}>
-        <span id="blupoints-display" style={{ marginLeft: 20, fontWeight: "bold" }}>
-          Total Available BLU Points: {blupoints}
-        </span>
-        <span id="blupoints-set-display" style={{ marginLeft: 20, fontWeight: "bold" }}>
-          Current BLU Points Set: {blupointsSet}
-        </span>
-        <span id="blulevel-display" style={{ marginLeft: 20, fontWeight: "bold" }}>
-          Current BLU Level: {blulevel}
-        </span>
-      </div>
-      {/* Main/Subjob Toggle */}
-      <div style={{ marginBottom: 20 }}>
-        <ToggleButtonGroup
-          value={jobType}
-          exclusive
-          onChange={handleJobTypeChange}
-          aria-label="job type"
-        >
-          <ToggleButton value="main" aria-label="main job">
-            Main Job
-          </ToggleButton>
-          <ToggleButton value="subjob" aria-label="subjob">
-            Subjob
-          </ToggleButton>
-        </ToggleButtonGroup>
-        <br></br><br></br>
-        {jobType === 'main' && (
-          <div style={{ display: "inline-block", marginLeft: 20 }}>
-            <label style={{ fontWeight: "bold", marginRight: 20 }}>
-              JP Blue Magic Points
-              <input
-                type="number"
-                value={jpPoints}
-                min={0}
-                max={20}
-                onChange={e => setJpPoints(Number(e.target.value))}
-                style={{ marginLeft: 8, fontWeight: "normal" }}
-              />
-            </label>
-            <label style={{ fontWeight: "bold", marginRight: 20 }}>
-              Assimilation merit points
-              <input
-                type="number"
-                value={assimilationPoints}
-                min={0}
-                max={5}
-                onChange={e => setAssimilationPoints(Number(e.target.value))}
-                style={{ marginLeft: 8, fontWeight: "normal" }}
-              />
-            </label>
-            <div className="checkbox-wrapper-3" style={{ fontWeight: "bold" }}>
-            <label>
-              <input
-                type="checkbox"
-                id="cbx-3"
-                checked={bonus1200}
-                onChange={e => setBonus1200(e.target.checked)}
-              /><label htmlFor="cbx-3" className="toggle"><span></span></label>
-              Job Trait Bonus 1200
-            </label>
-            </div>
-            <div className="checkbox-wrapper-4" style={{ fontWeight: "bold" }}>
-            <label style={{ marginLeft: 20 }}>
-              <input
-                type="checkbox"
-                id="cbx-4"
-                checked={bonus100}
-                onChange={e => setBonus100(e.target.checked)}
-              /><label htmlFor="cbx-4" className="toggle"><span></span></label>
-              Job Trait Bonus 100
-            </label>
-            </div>
-          </div>
-        )}
-        {jobType === 'subjob' && (
-          <label style={{ marginLeft: 20, fontWeight: "bold" }}>
-            Main Job Master Level
-            <input
-              type="number"
-              min={0}
-              max={50}
-              value={masterLevel}
-              onChange={e => setMasterLevel(Number(e.target.value))}
-              style={{ marginLeft: 8, width: 60, fontWeight: "normal" }}
-            />
-          </label>
-        )}
-      </div>
-      <div className="output-section" style={{ display: "flex", gap: 40, alignItems: "flex-start" }}>
-        <div>
-          <h2>GENERATED XML</h2>
-          <pre
-            id="xml-output"
-            style={{
-              border: "2px solid #0078d4",
-              borderRadius: 6,
-              padding: 12,
-              background: "#f9f9f9",
-              fontFamily: "monospace",
-              userSelect: "all",
-              minWidth: 300,
-              minHeight: 120,
-              boxSizing: "border-box",
-              textAlign: 'left'
-            }}
-          >
-            {xmlOutput}
-          </pre>
-        </div>
-        <div>
-          <h2>JOB TRAITS</h2>
-          <pre id="job-trait-output">{qualifyingTraits.join("\n")}</pre>
-        </div>
-        <div>
-          <h2>STAT BONUSES</h2>
-          <pre id="stat-bonus-display" style={{ fontWeight: "bold" }}>
-            {statBonuses.length ? statBonuses.join(", \n") : "None"}
-          </pre>
-        </div>
-      </div>
-      <div className="search-section" style={{ marginTop: 20, textAlign: "left" }}>
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Search spells..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          style={{ padding: 8, width: "100%", maxWidth: 455, textAlign: "left" , borderRadius: 4, border: "1px solid #000000ff"}}
-        />
-      </div>
-      <div id="table-container" style={{ marginTop: 20 }}>
-        <table>
-          <thead>
-            <tr>
-              <th>Select</th>
-              {data[0] &&
-                Object.keys(data[0]).map(key => (
-                  <th key={key}>{key}</th>
-                ))}
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData.map(item => {
-              const spellCost = parseInt(item["Point Cost"], 10) || 0;
-              const checked = selectedSpells.includes(item.Spell);
-              const disable =
-                (!checked &&
-                  (limitReached ||
-                    blupointsSet + spellCost > blupoints));
-              // Calculate color for Point Cost column (1-8)
-              const minCost = 1, maxCost = 8;
-              const percent = Math.max(0, Math.min(1, (spellCost - minCost) / (maxCost - minCost)));
-              const pointCostColor = `rgb(${255 - percent * 120}, ${255 - percent * 120}, ${255 - percent * 120})`;
-
-              // Row color based on Subtype
-              let rowBg = "";
-              const subtype = (item["Subtype"] || "").toLowerCase();
-              if (subtype === "light") rowBg = "#fff";
-              else if (subtype === "earth") rowBg = "#af7d66ff"; // brown
-              else if (subtype === "fire") rowBg = "#dd9898ff";
-              else if (subtype === "water") rowBg = "#61b5eeff";
-              else if (subtype === "wind") rowBg = "#99eeb3ff";
-              else if (subtype === "ice") rowBg = "#87e7eeff";
-              else if (subtype === "lightning") rowBg = "#d68cddff";
-              else if (subtype === "dark") rowBg = "#726969ff";
-              else if (subtype === "slashing" || subtype === "blunt" || subtype === "piercing") rowBg = "#d3d3d3"; // grey
-
-              return (
-                <tr key={item.Spell} style={rowBg ? { background: rowBg } : undefined}>
-                  <td>
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      disabled={disable}
-                      onChange={e =>
-                        handleCheckbox(item.Spell, spellCost, e.target.checked)
-                      }
-                    />
-                  </td>
-                  {Object.keys(item).map(key => (
-                    <td
-                      key={key}
-                      style={
-                        key === "Point Cost"
-                          ? {
-                              background: pointCostColor,
-                              fontWeight: "bold"
-                            }
-                          : undefined
-                      }
-                    >
-                      {key === "Wiki Link" && item[key] ? (
-                        <a href={item[key]} target="_blank" rel="noopener noreferrer">
-                          {item[key]}
-                        </a>
-                      ) : (
-                        item[key]
-                      )}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <BluSetControls
+        blusetName={blusetName}
+        setBlusetName={setBlusetName}
+        handleSaveBluset={handleSaveBluset}
+        blusets={blusets}
+        selectedBluset={selectedBluset}
+        handleRecallBluset={handleRecallBluset}
+        handleClearBlusets={handleClearBlusets}
+        handleImportSampleBlusets={handleImportSampleBlusets}
+      />
+      <JobStatsBox blupoints={blupoints} blupointsSet={blupointsSet} blulevel={blulevel} />
+      <JobTypeToggle
+        jobType={jobType}
+        handleJobTypeChange={handleJobTypeChange}
+        handleToggleJobType={handleToggleJobType}
+      />
+      <OutputSection xmlOutput={xmlOutput} qualifyingTraits={qualifyingTraits} statBonuses={statBonuses} />
+      <SpellTable
+        data={data}
+        filteredData={filteredData}
+        selectedSpells={selectedSpells}
+        limitReached={limitReached}
+        blupointsSet={blupointsSet}
+        blupoints={blupoints}
+        handleCheckbox={handleCheckbox}
+      />
     </div>
   );
 }

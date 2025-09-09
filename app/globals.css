@@ -237,3 +237,50 @@ td:nth-child(2) {
     opacity: 0;
     transition: all 0.4s ease;
   }
+
+/* Stylish number input with + and - buttons */
+.styled-number-input {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  background: #f7f6ff;
+  border: 1px solid #947ADA;
+  overflow: hidden;
+  font-size: 1.1em;
+}
+
+.styled-number-input button {
+  background: #947ADA;
+  color: #fff;
+  border: none;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.styled-number-input button:active {
+  background: #7c5fc4;
+}
+
+.styled-number-input input[type="number"] {
+  width: 60px;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-size: 1.1em;
+  outline: none;
+  padding: 0 8px;
+}
+
+/* Remove default up/down arrows on number inputs for all browsers */
+.styled-number-input input[type="number"]::-webkit-inner-spin-button,
+.styled-number-input input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.styled-number-input input[type="number"] {
+  appearance: textfield;
+}

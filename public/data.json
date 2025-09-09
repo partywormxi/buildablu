@@ -562,7 +562,7 @@
     "Available Level": 36,
     "Description": "Additional effect: sleep. Duration of effect varies with TP.",
     "Type": "Physical",
-    "Subtype": "Ranged",
+    "Subtype": "Piercing",
     "Target": "Single",
     "Enhancement Effect": "",
     "Enfeeble Effect": "Sleep",
