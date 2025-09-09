@@ -35,7 +35,7 @@ export default function Page() {
   const [sampleBlusets, setSampleBlusets] = useState([]);
 
   useEffect(() => {
-    fetch('./data.json')
+    fetch('https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/data.json')
       .then(res => res.json())
       .then(setData);
   }, []);
@@ -233,7 +233,7 @@ export default function Page() {
 
   // Button handler to read sets from samplesets.xml and add to recall blusets
   function handleImportSampleBlusets() {
-    fetch('./samplesets.xml')
+    fetch('https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/samplesets.xml')
       .then(res => res.text())
       .then(xmlText => {
         const parser = new DOMParser();
@@ -258,7 +258,7 @@ export default function Page() {
 
   return (
     <div className="container" style={{ maxWidth: "80%", padding: 20 }}>
-      <h1>BUILD-A-BLU</h1>
+      <h1>BUILD-A-BLU (beta)</h1>
       {/* BLUset Save/Recall/Clear/Import UI */}
       <BluSetControls
         blusetName={blusetName}
