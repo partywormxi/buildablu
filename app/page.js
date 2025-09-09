@@ -224,6 +224,13 @@ export default function Page() {
     }
   }
 
+  function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+    );
+  }
+
   // Button handler to read sets from samplesets.xml and add to recall blusets
   function handleImportSampleBlusets() {
     fetch('./samplesets.xml')
@@ -236,7 +243,7 @@ export default function Page() {
           const name = setEl.getAttribute("name") || "sample";
           const spells = Array.from(setEl.children)
             .filter(child => child.tagName.startsWith("slot"))
-            .map(child => child.textContent);
+            .map(child => toTitleCase(child.textContent));
           return { name, spells };
         });
         // Add samples to blusets if not already present

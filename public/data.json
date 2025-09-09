@@ -522,7 +522,7 @@
     "Wiki Link": "https://www.bg-wiki.com/ffxi/Death_Ray"
   },
   {
-    "Spell": "Smite of Rage",
+    "Spell": "Smite Of Rage",
     "Available Level": 34,
     "Description": "Damage varies with TP.",
     "Type": "Physical",
@@ -1026,7 +1026,7 @@
     "Wiki Link": "https://www.bg-wiki.com/ffxi/Feather_Barrier"
   },
   {
-    "Spell": "Light of Penance",
+    "Spell": "Light Of Penance",
     "Available Level": 58,
     "Description": "Reduces an enemy's TP. Additional effect: Blindness and \"Bind.",
     "Type": "Magical (Gaze)",
@@ -2160,7 +2160,7 @@
     "Wiki Link": "https://www.bg-wiki.com/ffxi/Magic_Barrier"
   },
   {
-    "Spell": "Whirl of Rage",
+    "Spell": "Whirl Of Rage",
     "Available Level": 83,
     "Description": "Delivers an area attack that stuns enemies. Damage varies with TP.",
     "Type": "Physical",
@@ -2358,7 +2358,7 @@
     "Wiki Link": "https://www.bg-wiki.com/ffxi/Charged_Whisker"
   },
   {
-    "Spell": "Winds of Promy.",
+    "Spell": "Winds Of Promy.",
     "Available Level": 89,
     "Description": "Removes one detrimental magic effect for party members within area of effect.",
     "Type": "Magical",
@@ -2682,7 +2682,7 @@
     "Wiki Link": "https://www.bg-wiki.com/ffxi/Barbed_Crescent"
   },
   {
-    "Spell": "Nature's Meditation",
+    "Spell": "Nat. Meditation",
     "Available Level": 99,
     "Description": "Enhances Attacks.",
     "Type": "Magical",
