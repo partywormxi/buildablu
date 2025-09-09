@@ -1,4 +1,8 @@
-export default function JobStatsBox({ blupoints, blupointsSet, blulevel }) {
+export default function JobStatsBox({ 
+  blupoints, 
+  blupointsSet, 
+  blulevel 
+}) {
   return (
     <div
       className="jp-section"

@@ -1,4 +1,8 @@
-export default function OutputSection({ xmlOutput, qualifyingTraits, statBonuses }) {
+export default function OutputSection({ 
+  xmlOutput, 
+  qualifyingTraits, 
+  statBonuses 
+}) {
   return (
     <div className="output-section" style={{ display: "flex", gap: 40, alignItems: "flex-start" }}>
       <div>

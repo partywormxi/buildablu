@@ -264,13 +264,41 @@ export default function Page() {
         handleClearBlusets={handleClearBlusets}
         handleImportSampleBlusets={handleImportSampleBlusets}
       />
-      <JobStatsBox blupoints={blupoints} blupointsSet={blupointsSet} blulevel={blulevel} />
+      <JobStatsBox 
+        blupoints={blupoints} 
+        blupointsSet={blupointsSet} 
+        blulevel={blulevel} 
+      />
       <JobTypeToggle
         jobType={jobType}
         handleJobTypeChange={handleJobTypeChange}
         handleToggleJobType={handleToggleJobType}
+        bonus1200={bonus1200}
+        setBonus1200={setBonus1200}
+        bonus100={bonus100}
+        setBonus100={setBonus100}
+        jpPoints={jpPoints}
+        setJpPoints={setJpPoints}
+        assimilationPoints={assimilationPoints}
+        setAssimilationPoints={setAssimilationPoints}
+        masterLevel={masterLevel}
+        setMasterLevel={setMasterLevel}
       />
-      <OutputSection xmlOutput={xmlOutput} qualifyingTraits={qualifyingTraits} statBonuses={statBonuses} />
+      <OutputSection 
+        xmlOutput={xmlOutput} 
+        qualifyingTraits={qualifyingTraits} 
+        statBonuses={statBonuses} 
+      />
+      <div className="search-section" style={{ marginTop: 20 }}>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search spells..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          style={{ padding: 8, width: "100%", maxWidth: 400 }}
+        />
+      </div>
       <SpellTable
         data={data}
         filteredData={filteredData}
