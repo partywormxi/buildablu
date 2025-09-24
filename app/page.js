@@ -23,12 +23,13 @@ export default function Page() {
   // New state for BLU level
   const [blulevel, setBluLevel] = useState(jobType === 'main' ? 99 : 49);
 
-  const [blusets, setBlusets] = useState(() => {
+  // Store blusets by jobType
+  const [blusetsByJob, setBlusetsByJob] = useState(() => {
     if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("blu_blusets");
-      return saved ? JSON.parse(saved) : [];
+      const saved = localStorage.getItem("blu_blusets_by_job");
+      return saved ? JSON.parse(saved) : { main: [], subjob: [] };
     }
-    return [];
+    return { main: [], subjob: [] };
   });
   const [blusetName, setBlusetName] = useState('');
   const [selectedBluset, setSelectedBluset] = useState('');
@@ -182,46 +183,99 @@ export default function Page() {
     }
   }, [jobType, masterLevel]);
 
+  // Update blusets when jobType changes
+  useEffect(() => {
+    setSelectedBluset('');
+    setSelectedSpells([]);
+  }, [jobType]);
+
   // Save blusets to localStorage whenever they change
   useEffect(() => {
     if (typeof window !== "undefined") {
-      localStorage.setItem("blu_blusets", JSON.stringify(blusets));
+      localStorage.setItem("blu_blusets_by_job", JSON.stringify(blusetsByJob));
     }
-  }, [blusets]);
+  }, [blusetsByJob]);
 
-  // Save current bluset
+  // Save current bluset for current jobType
   function handleSaveBluset() {
     if (!blusetName.trim()) return;
     const newBluset = {
       name: blusetName.trim(),
       spells: selectedSpells,
     };
-    setBlusets(prev =>
-      [
-        ...prev.filter(bs => bs.name !== newBluset.name),
-        newBluset
-      ]
-    );
+    setBlusetsByJob(prev => {
+      const jobSets = prev[jobType].filter(bs => bs.name !== newBluset.name);
+      return {
+        ...prev,
+        [jobType]: [...jobSets, newBluset]
+      };
+    });
     setSelectedBluset(newBluset.name);
     setBlusetName('');
   }
 
-  // Recall bluset
+  // Recall bluset for current jobType
   function handleRecallBluset(name) {
-    const bs = blusets.find(b => b.name === name);
+    const bs = blusetsByJob[jobType].find(b => b.name === name);
     if (bs) {
       setSelectedSpells(bs.spells);
       setSelectedBluset(name);
     }
   }
 
-  // Clear all blusets
+  // Clear all blusets for current jobType
   function handleClearBlusets() {
-    setBlusets([]);
+    setBlusetsByJob(prev => ({
+      ...prev,
+      [jobType]: []
+    }));
     setSelectedBluset('');
     if (typeof window !== "undefined") {
-      localStorage.removeItem("blu_blusets");
+      localStorage.setItem("blu_blusets_by_job", JSON.stringify({
+        ...blusetsByJob,
+        [jobType]: []
+      }));
     }
+  }
+ // https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/samplesets.xml
+  // Import sample blusets for current jobType
+  function handleImportSampleBlusets() {
+    //fetch('samplesets.xml')
+    fetch('https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/samplesets.xml')
+      .then(res => res.text())
+      .then(xmlText => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
+        const tagNames = [];
+        if (jobType === 'main') {
+          tagNames.push("sample", "sample-bumba");
+        } else {
+          tagNames.push("pld");
+        }
+        tagNames.forEach(tag => {
+          const sets = Array.from(xmlDoc.getElementsByTagName(tag));
+          //console.log("sets for tag", tag, sets);
+          const samples = sets.map(setEl => {
+          const name = setEl.getAttribute("name") || tag;
+          const spells = Array.from(setEl.children)
+            .filter(child => child.tagName.startsWith("slot"))
+            .map(child => toTitleCase(child.textContent));
+          return { name, spells };
+        });
+        //console.log("Imported sample blusets:", samples);
+        // main or subjob
+        setBlusetsByJob(prev => {
+          const existingNames = new Set(prev[jobType].map(bs => bs.name));
+          const newSets = samples.filter(s => !existingNames.has(s.name));
+          return {
+            ...prev,
+            [jobType]: [...prev[jobType], ...newSets]
+          };
+        });
+        //setSampleBlusets(samples);
+      });
+    });
+        
   }
 
   function toTitleCase(str) {
@@ -229,31 +283,6 @@ export default function Page() {
       /\w\S*/g,
       text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
     );
-  }
-
-  // Button handler to read sets from samplesets.xml and add to recall blusets
-  function handleImportSampleBlusets() {
-    fetch('https://raw.githubusercontent.com/partywormxi/buildablu/refs/heads/main/public/samplesets.xml')
-      .then(res => res.text())
-      .then(xmlText => {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlText, "application/xml");
-        const sets = Array.from(xmlDoc.getElementsByTagName("sample"));
-        const samples = sets.map(setEl => {
-          const name = setEl.getAttribute("name") || "sample";
-          const spells = Array.from(setEl.children)
-            .filter(child => child.tagName.startsWith("slot"))
-            .map(child => toTitleCase(child.textContent));
-          return { name, spells };
-        });
-        // Add samples to blusets if not already present
-        setBlusets(prev => {
-          const existingNames = new Set(prev.map(bs => bs.name));
-          const newSets = samples.filter(s => !existingNames.has(s.name));
-          return [...prev, ...newSets];
-        });
-        setSampleBlusets(samples); // Optionally keep for reference
-      });
   }
 
   return (
@@ -264,7 +293,7 @@ export default function Page() {
         blusetName={blusetName}
         setBlusetName={setBlusetName}
         handleSaveBluset={handleSaveBluset}
-        blusets={blusets}
+        blusets={blusetsByJob[jobType]}
         selectedBluset={selectedBluset}
         handleRecallBluset={handleRecallBluset}
         handleClearBlusets={handleClearBlusets}

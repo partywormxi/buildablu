@@ -1,36 +1,59 @@
-<sample>
-    <slot01>sheep song</slot01>
-    <slot02>cocoon</slot02>
-    <slot03>spectral floe</slot03>
-    <slot04>delta thrust</slot04>
-    <slot05>blank gaze</slot05>
-    <slot06>glutinous dart</slot06>
-    <slot07>sweeping gouge</slot07>
-    <slot08>erratic flutter</slot08>
-    <slot09>sudden lunge</slot09>
-    <slot10>occultation</slot10>
-    <slot11>barbed crescent</slot11>
-    <slot12>nat. meditation</slot12>
-    <slot13>winds of promy.</slot13>
-    <slot14>magic fruit</slot14>
-    <slot15>fantod</slot15>
-    <slot16>white wind</slot16>
-    <slot17>entomb</slot17>
-    <slot18>magic hammer</slot18>
-    <slot19>subduction</slot19>
-    <slot20>barrier tusk</slot20>
-</sample>
-<sample-bumba>
-    <slot01>sheep song</slot01>
-    <slot02>cocoon</slot02>
-    <slot03>spectral floe</slot03>
-    <slot04>delta thrust</slot04>
-    <slot05>blank gaze</slot05>
-    <slot06>glutinous dart</slot06>
-    <slot07>sweeping gouge</slot07>
-    <slot08>erratic flutter</slot08>
-    <slot09>sudden lunge</slot09>
-    <slot10>occultation</slot10>
-    <slot11>barbed crescent</slot11>
-    <slot12>nat. meditation</slot12>
-</sample-bumba>
+<spellsets>
+    <sample>
+        <slot01>sheep song</slot01>
+        <slot02>cocoon</slot02>
+        <slot03>spectral floe</slot03>
+        <slot04>delta thrust</slot04>
+        <slot05>blank gaze</slot05>
+        <slot06>glutinous dart</slot06>
+        <slot07>sweeping gouge</slot07>
+        <slot08>erratic flutter</slot08>
+        <slot09>sudden lunge</slot09>
+        <slot10>occultation</slot10>
+        <slot11>barbed crescent</slot11>
+        <slot12>nat. meditation</slot12>
+        <slot13>winds of promy.</slot13>
+        <slot14>magic fruit</slot14>
+        <slot15>fantod</slot15>
+        <slot16>white wind</slot16>
+        <slot17>entomb</slot17>
+        <slot18>magic hammer</slot18>
+        <slot19>subduction</slot19>
+        <slot20>barrier tusk</slot20>
+    </sample>
+    <sample-bumba>
+        <slot01>jettatura</slot01>
+        <slot02>saline coat</slot02>
+        <slot03>rending deluge</slot03>
+        <slot04>memento mori</slot04>
+        <slot05>magic fruit</slot05>
+        <slot06>searing tempest</slot06>
+        <slot07>scouring spate</slot07>
+        <slot08>cocoon</slot08>
+        <slot09>quad. continuum</slot09>
+        <slot10>tenebral crush</slot10>
+        <slot11>feather tickle</slot11>
+        <slot12>fantod</slot12>
+        <slot13>ice break</slot13>
+        <slot14>zephyr mantle</slot14>
+        <slot15>magic barrier</slot15>
+        <slot16>reaving wind</slot16>
+        <slot17>plenilune embrace</slot17>
+        <slot18>erratic flutter</slot18>
+        <slot19>delta thrust</slot19>
+        <slot20>magnetite cloud</slot20>
+    </sample-bumba>
+    <pld>
+        <slot01>cocoon</slot01>
+        <slot02>sheep song</slot02>
+        <slot03>blank gaze</slot03>
+        <slot04>geist wall</slot04>
+        <slot05>soporific</slot05>
+        <slot06>frightful roar</slot06>
+        <slot07>ice break</slot07>
+        <slot08>magnetite cloud</slot08>
+        <slot09>stinking gas</slot09>
+        <slot10>jettatura</slot10>
+        <slot11>screwdriver</slot11>
+    </pld>
+</spellsets>
