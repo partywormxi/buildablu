@@ -43,6 +43,43 @@
         <slot19>delta thrust</slot19>
         <slot20>magnetite cloud</slot20>
     </sample-bumba>
+    <sample-mboze>
+        <slot01>sub-zero smash</slot01>
+        <slot02>feather tickle</slot02>
+        <slot03>auroral drape</slot03>
+        <slot04>reaving wind</slot04>
+        <slot05>wind breath</slot05>
+        <slot06>erratic flutter</slot06>
+        <slot07>molting plumage</slot07>
+        <slot08>diamondhide</slot08>
+        <slot09>cocoon</slot09>
+        <slot10>bad breath</slot10>
+        <slot11>entomb</slot11>
+        <slot12>silent storm</slot12>
+        <slot13>scouring spate</slot13>
+        <slot14>blinding fulgor</slot14>
+        <slot15>atra. libations</slot15>
+        <slot16>tenebral crush</slot16>
+    </sample-mboze>
+    <sample-dps>
+        <slot01>barbed crescent</slot01>
+        <slot02>delta thrust</slot02>
+        <slot03>empty thrash</slot03>
+        <slot04>heavy strike</slot04>
+        <slot05>thrashing assault</slot05>
+        <slot06>sudden lunge</slot06>
+        <slot07>sickle slash</slot07>
+        <slot08>tail slap</slot08>
+        <slot09>sinker drill</slot09>
+        <slot10>paralyzing triad</slot10>
+        <slot11>nat. meditation</slot11>
+        <slot12>fantod</slot12>
+        <slot13>diffusion ray</slot13>
+        <slot14>tenebral crush</slot14>
+        <slot15>anvil lightning</slot15>
+        <slot16>erratic flutter</slot16>
+        <slot17>magic fruit</slot17>
+    </sample-dps>
     <pld>
         <slot01>cocoon</slot01>
         <slot02>sheep song</slot02>

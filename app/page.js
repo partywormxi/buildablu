@@ -248,7 +248,7 @@ export default function Page() {
         const xmlDoc = parser.parseFromString(xmlText, "application/xml");
         const tagNames = [];
         if (jobType === 'main') {
-          tagNames.push("sample", "sample-bumba");
+          tagNames.push("sample", "sample-bumba", "sample-mboze", "sample-dps");
         } else {
           tagNames.push("pld");
         }
