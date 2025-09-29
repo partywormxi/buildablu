@@ -54,12 +54,11 @@
         <slot08>diamondhide</slot08>
         <slot09>cocoon</slot09>
         <slot10>bad breath</slot10>
-        <slot11>entomb</slot11>
-        <slot12>silent storm</slot12>
-        <slot13>scouring spate</slot13>
-        <slot14>blinding fulgor</slot14>
-        <slot15>atra. libations</slot15>
-        <slot16>tenebral crush</slot16>
+        <slot11>silent storm</slot11>
+        <slot12>scouring spate</slot12>
+        <slot13>blinding fulgor</slot13>
+        <slot14>atra. libations</slot14>
+        <slot15>tenebral crush</slot15>
     </sample-mboze>
     <sample-dps>
         <slot01>barbed crescent</slot01>
